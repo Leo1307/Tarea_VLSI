@@ -22,7 +22,7 @@ Este documento desarrolla la Tarea 1 del curso Introducción al Diseño de Circu
 
 ### Planteamiento del transistor unitario
 
-De acuerdo con el enunciado, se asume un transistor unitario de dimensiones $4\lambda/2\lambda$ \cite{tarea1}. Para un proceso de $0.18~\mu m$, se tiene
+De acuerdo con el enunciado, se asume un transistor unitario de dimensiones $4\lambda/2\lambda$. Para un proceso de $0.18~\mu m$, se tiene
 
 $$ 2\lambda = 0.18~\mu m $$
 
@@ -39,14 +39,14 @@ Estas dimensiones se utilizarán tanto para el cálculo de la resistencia efecti
 
 ### Resistencia efectiva del transistor mínimo NMOS
 
-El circuito de medición considerado corresponde a un transistor NMOS con la compuerta conectada a $V_{DD}$, la fuente conectada a tierra y el drenaje unido a un capacitor inicialmente cargado a $V_{DD}$. Bajo esta configuración, la salida conmuta desde $V_{DD}$ hasta GND descargando el capacitor a través del transistor encendido, tal como se pide en \cite{tarea1} y se discute ejemplo de \cite{weste}.
+El circuito de medición considerado corresponde a un transistor NMOS con la compuerta conectada a $V_{DD}$, la fuente conectada a tierra y el drenaje unido a un capacitor inicialmente cargado a $V_{DD}$. Bajo esta configuración, la salida conmuta desde $V_{DD}$ hasta GND descargando el capacitor a través del transistor encendido.
 
 ![Circuito de prueba para estimar la resistencia efectiva del NMOS y representación cualitativa de la característica $I_D$-$V_{DS}$.](fig/figura_tikz.png)  
-*Figura 1: Circuito de prueba para estimar la resistencia efectiva del NMOS y representación cualitativa de la característica $I_D$-$V_{DS}$ (originalmente en TikZ).*
+*Figura 1: Circuito de prueba para estimar la resistencia efectiva del NMOS y representación cualitativa de la característica $I_D$-$V_{DS}$.*
 
-Para la corriente de referencia se usan los parámetros típicos del proceso XH018 para transistores de 1.8 V \cite{xfab}. En particular,
+Para la corriente de referencia se usan los parámetros típicos del proceso XH018 para transistores de 1.8 V. En particular,
 
-$$ \begin{aligned} I_{ON} &= I_{dsat}(V_{gs}=V_{ds}=1.8\,\text{V},\, W/L=10/0.18) \\ &= 475~\mu\text{A}/\mu\text{m} \end{aligned} \label{eq:ion_xfab} $$
+$$ I_{ON} = I_{dsat}(V_{gs}=V_{ds}=1.8\,\text{V},\, W/L=10/0.18) = 475~\mu\text{A}/\mu\text{m} $$
 
 ![Parámetros típicos para transistores de 1.8 V de la tecnología XFAB XH018 empleados en los cálculos de la Parte 1.](fig/Captura%20de%20pantalla%202026-03-31%20230819.png)  
 *Figura 2: Parámetros típicos para transistores de 1.8 V de la tecnología XFAB XH018 empleados en los cálculos de la Parte 1.*
@@ -61,7 +61,7 @@ $$ I_H \approx 171~\mu A. $$
 
 #### Cálculo con la ecuación (4.16)
 
-De acuerdo con \cite{weste}, si durante la descarga el transistor permanece suficientemente en saturación de velocidad y la corriente puede considerarse aproximadamente constante, la resistencia efectiva se estima como
+De acuerdo con la literatura, si durante la descarga el transistor permanece suficientemente en saturación de velocidad y la corriente puede considerarse aproximadamente constante, la resistencia efectiva se estima como
 
 $$ R_n^{(4.16)} \approx \frac{V_{DD}}{2I_{dsat}}. $$
 
@@ -71,11 +71,11 @@ $$ R_n^{(4.16)} \approx \frac{1.8}{2(171\times 10^{-6})}=5.263~k\Omega. $$
 
 #### Cálculo con la ecuación (4.19)
 
-La ecuación (4.19) mejora la aproximación anterior al considerar que la entrada no sube instantáneamente, de manera que la corriente del transistor cambia entre un valor inicial $I_L$ y un valor final $I_H$ durante la transición \cite{weste}. En este caso,
+La ecuación (4.19) mejora la aproximación anterior al considerar que la entrada no sube instantáneamente, de manera que la corriente del transistor cambia entre un valor inicial $I_L$ y un valor final $I_H$ durante la transición. En este caso,
 
 $$ R_n^{(4.19)} = \frac{V_{DD}}{I_H + I_L}. $$
 
-Para estimar $I_L$, se toma la recomendación del documento de parámetros de XFAB para transistores mínimos, donde se indica que en esta tecnología es probable la presencia de saturación de velocidad y se sugiere un modelo I--V lineal de primer orden \cite{xfab}. Usando un umbral aproximado de transistor mínimo
+Para estimar $I_L$, se toma la recomendación del documento de parámetros de XFAB para transistores mínimos, donde se indica que en esta tecnología es probable la presencia de saturación de velocidad y se sugiere un modelo I--V lineal de primer orden. Usando un umbral aproximado de transistor mínimo
 
 $$ V_T(W/L=0.22/0.18) \approx 0.45~V, $$
 
@@ -93,21 +93,21 @@ $$ R_n^{(4.19)} \approx \frac{1.8}{171\times 10^{-6}+57\times 10^{-6}}=7.89~k\Om
 
 #### Discusión de resultados
 
-Los resultados obtenidos con ambas ecuaciones son distintos porque la ecuación (4.16) trata la descarga como si el transistor condujera una corriente casi constante durante toda la transición. En contraste, la ecuación (4.19) incorpora el efecto del tiempo de subida finito de la entrada, por lo que la corriente del transistor cambia entre un valor inicial $I_L$ y uno final $I_H$, aumentando la resistencia efectiva calculada. En consecuencia, la ecuación (4.16) resulta útil como una primera estimación rápida, mientras que la ecuación (4.19) ofrece una aproximación más realista dentro del modelo analítico empleado \cite{weste}. Por lo tanto tenemos las siguiente resistencias efectivas para ambos casos,
+Los resultados obtenidos con ambas ecuaciones son distintos porque la ecuación (4.16) trata la descarga como si el transistor condujera una corriente casi constante durante toda la transición. En contraste, la ecuación (4.19) incorpora el efecto del tiempo de subida finito de la entrada, por lo que la corriente del transistor cambia entre un valor inicial $I_L$ y uno final $I_H$, aumentando la resistencia efectiva calculada. En consecuencia, la ecuación (4.16) resulta útil como una primera estimación rápida, mientras que la ecuación (4.19) ofrece una aproximación más realista dentro del modelo analítico empleado. Por lo tanto tenemos las siguiente resistencias efectivas para ambos casos,
 
 $$ R_n^{(4.16)} \approx 5.263~k\Omega $$
 $$ R_n^{(4.19)} \approx 7.89~k\Omega. $$
 
 ### Capacitancia equivalente de compuerta y constante RC
 
-Para esta parte se utilizan los parámetros del transistor NMOS de 1.8 V del proceso XH018 \cite{xfab}:
+Para esta parte se utilizan los parámetros del transistor NMOS de 1.8 V del proceso XH018:
 
 $$ C_{OX}=8.46~\mathrm{fF}/\mu m^2, $$
 $$ C_{OV}=0.33~\mathrm{fF}/\mu m, $$
 $$ \Delta L = 0.02~\mu m, $$
 $$ \Delta W = 0.05~\mu m. $$
 
-El documento de parámetros indica que, para una estimación más pesimista de $C_{gs}$ en conmutación, debe emplearse la expresión correspondiente al caso en que el transistor cambia entre corte y triodo \cite{xfab}. Primero, se calculan las dimensiones efectivas:
+El documento de parámetros indica que, para una estimación más pesimista de $C_{gs}$ en conmutación, debe emplearse la expresión correspondiente al caso en que el transistor cambia entre corte y triodo. Primero, se calculan las dimensiones efectivas:
 
 $$ L_{eff} = L_{dib} - \Delta L = 0.18 - 0.02 = 0.16~\mu m $$
 $$ W_{eff} = W_{dib} - \Delta W = 0.36 - 0.05 = 0.31~\mu m. $$
@@ -132,7 +132,7 @@ por lo que
 
 $$ C \approx 0.667+0.102=0.769~\mathrm{fF}. $$
 
-El enunciado indica que se suponga que las capacitancias de difusión son iguales a la capacitancia de compuerta \cite{tarea1}, de manera que
+El enunciado indica que se suponga que las capacitancias de difusión son iguales a la capacitancia de compuerta, de manera que
 
 $$ C_{db}=C_{sb}=C\approx 0.769~\mathrm{fF}. $$
 
@@ -176,11 +176,11 @@ $$ V_M = \frac{V_{DD}}{2} = 0.9~V. $$
 **Verificación de saturación de velocidad**  
 Para tecnología de $0.18\ \mu m$ con $V_{DD} = 1.8\text{ V}$:
 $$ E_{aplicado} = \frac{V_{DD}}{L_{eff}} = \frac{1.8}{0.16} = 11.25\text{ V}/\mu\text{m} $$
-De la literatura sabemos que \cite{rabaey}:  
+De la literatura sabemos que:  
 $$ E_c \approx 1 - 2\text{ V}/\mu\text{m} $$  
 Dado que $E_{aplicado} \gg E_c$, se confirma que estamos en **saturación de velocidad**. Esto provoca lo siguiente:
 - Causa que la velocidad de los portadores se sature.
-- Como consecuencia, la corriente ya no depende del cuadrado del voltaje, sino que depende linealmente del voltaje \cite{weste}.
+- Como consecuencia, la corriente ya no depende del cuadrado del voltaje, sino que depende linealmente del voltaje.
 
 Como primer paso, se realizó una simulación rápida del transistor mínimo para identificar el régimen de operación más adecuado para el cálculo analítico. A partir de la familia de curvas $I_D$--$V_{DS}$ del NMOS mínimo, se observó que la corriente comienza a saturarse a un valor de $V_{DS}$ significativamente menor que el esperado por el modelo de canal largo, donde
 
@@ -190,14 +190,14 @@ Usando $V_{GS}=1.8~V$ y el valor típico $V_T \approx 0.45~V$ para un NMOS cerca
 
 $$ V_{DS,sat,long} \approx 1.35~V. $$
 
-Sin embargo, en la simulación la curva comienza a aplanarse alrededor de $V_{DS,sat,obs}\approx 0.8~V$, lo cual indica saturación temprana y comportamiento de canal corto. Por esta razón, para el dimensionamiento inicial del inversor se adoptó el modelo de saturación de velocidad en lugar del modelo cuadrático de canal largo, como se puede observar en la Fig. \ref{fig:sat}.
+Sin embargo, en la simulación la curva comienza a aplanarse alrededor de $V_{DS,sat,obs}\approx 0.8~V$, lo cual indica saturación temprana y comportamiento de canal corto. Por esta razón, para el dimensionamiento inicial del inversor se adoptó el modelo de saturación de velocidad en lugar del modelo cuadrático de canal largo, como se puede observar en la Figura 3.
 
 ![Curva $I_D$--$V_{DS}$ del NMOS mínimo.](fig/velocidadsat.jpeg)  
 *Figura 3: Curva $I_D$--$V_{DS}$ del NMOS mínimo (sat).*
 
 #### Solución analítica inicial
 
-Utilizando la ecuación (2.57) de la sección 2.5.2 de \cite{weste} para el voltaje de conmutación y sustituyendo $V_{INV}$:
+Utilizando la ecuación (2.57) de la sección 2.5.2 de la bibliografía para el voltaje de conmutación y sustituyendo $V_{INV}$:
 
 $$ 0.9 = \frac{1.8 + V_{tp} + V_{tn}\left(\frac{1}{r}\right)}{1 + \frac{1}{r}} $$
 
@@ -214,7 +214,7 @@ En la zona de saturación de velocidad, la corriente se aproxima por:
 
 $$ I_{dsat} \approx W \cdot I_{ON} $$
 
-Para que el inversor conmute en $V_{DD}/2$, la capacidad de `tirar'' hacia abajo (NMOS) debe ser igual a la capacidad de tirar'' hacia arriba (PMOS) en ese punto de transición. Por lo tanto, la relación de anchos necesaria es inversamente proporcional a la relación de corrientes:
+Para que el inversor conmute en $V_{DD}/2$, la capacidad de "tirar" hacia abajo (NMOS) debe ser igual a la capacidad de "tirar" hacia arriba (PMOS) en ese punto de transición. Por lo tanto, la relación de anchos necesaria es inversamente proporcional a la relación de corrientes:
 
 $$ \frac{W_p}{W_n} \approx \frac{I_{ONn}}{I_{ONp}} = \frac{475}{170} \approx 2.794 $$
 
@@ -456,10 +456,13 @@ lo cual es consistente con la menor movilidad de los huecos en el transistor PMO
 
 ## Conclusiones
 
-El método basado en la ecuación (8.7) proporciona la estimación más precisa de la resistencia efectiva, por lo que se prefiere sobre los métodos utilizados en la parte 1.a. Se diseñó un inversor CMOS mínimo en la tecnología XFAB XH018 de 1.8 V, imponiendo que el NMOS correspondiera al tamaño mínimo definido por las reglas escalables con contactos en difusión y buscando que el punto de transición se ubicara en $V_{DD}/2$. La evaluación del transistor mínimo mediante simulaciones rápidas y análisis del campo eléctrico permitió concluir que su comportamiento se encuentra en régimen de saturación de velocidad, por lo que se empleó el modelo de canal corto para el cálculo analítico inicial. A partir de la formulación de la sección 2.5.2 de \cite{weste} y de los parámetros del proceso \cite{xfab}, se obtuvo una primera estimación de la relación PMOS/NMOS. Posteriormente, mediante simulaciones DC en Virtuoso/Spectre, esta relación fue refinada empíricamente hasta obtener un punto de transición cercano a $V_{DD}/2$, cumpliendo de manera aproximada la condición de margen de ruido simétrico solicitada en el enunciado \cite{tarea1}. La medición de la corriente de cortocircuito mostró un máximo alrededor del punto de transición del inversor, lo cual es consistente con la conducción simultánea de ambos transistores en esa región. Finalmente, las simulaciones en esquinas de proceso mostraron una dispersión moderada de la curva de transferencia, aunque manteniendo el comportamiento del inversor alrededor de la condición nominal deseada. En conjunto, los resultados confirman que el diseño final constituye una solución razonable y robusta para el inversor mínimo solicitado.
+El método basado en la ecuación (8.7) proporciona la estimación más precisa de la resistencia efectiva, por lo que se prefiere sobre los métodos utilizados en la parte 1.a. Se diseñó un inversor CMOS mínimo en la tecnología XFAB XH018 de 1.8 V, imponiendo que el NMOS correspondiera al tamaño mínimo definido por las reglas escalables con contactos en difusión y buscando que el punto de transición se ubicara en $V_{DD}/2$. La evaluación del transistor mínimo mediante simulaciones rápidas y análisis del campo eléctrico permitió concluir que su comportamiento se encuentra en régimen de saturación de velocidad, por lo que se empleó el modelo de canal corto para el cálculo analítico inicial. A partir de la formulación de la sección 2.5.2 de la bibliografía y de los parámetros del proceso, se obtuvo una primera estimación de la relación PMOS/NMOS. Posteriormente, mediante simulaciones DC en Virtuoso/Spectre, esta relación fue refinada empíricamente hasta obtener un punto de transición cercano a $V_{DD}/2$, cumpliendo de manera aproximada la condición de margen de ruido simétrico solicitada en el enunciado. La medición de la corriente de cortocircuito mostró un máximo alrededor del punto de transición del inversor, lo cual es consistente con la conducción simultánea de ambos transistores en esa región. Finalmente, las simulaciones en esquinas de proceso mostraron una dispersión moderada de la curva de transferencia, aunque manteniendo el comportamiento del inversor alrededor de la condición nominal deseada. En conjunto, los resultados confirman que el diseño final constituye una solución razonable y robusta para el inversor mínimo solicitado.
 
 ---
 
 ## Referencias
 
-\cite{tarea1}, \cite{weste}, \cite{xfab}, \cite{rabaey} (las referencias completas se encuentran en el archivo `Paper.bib` original).
+1. Enunciado de la Tarea 1, Curso Introducción al Diseño de Circuitos Integrados, ITCR.
+2. Weste, N. H. E., & Harris, D. M. (2010). *CMOS VLSI Design: A Circuits and Systems Perspective* (4th ed.). Addison-Wesley.
+3. XFAB XH018 Datasheet and Parameter Documents.
+4. Rabaey, J. M., Chandrakasan, A., & Nikolic, B. (2003). *Digital Integrated Circuits: A Design Perspective* (2nd ed.). Prentice Hall.
