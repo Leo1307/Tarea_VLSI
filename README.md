@@ -24,16 +24,16 @@ Este documento desarrolla la Tarea 1 del curso Introducción al Diseño de Circu
 
 De acuerdo con el enunciado, se asume un transistor unitario de dimensiones $4\lambda/2\lambda$. Para un proceso de $0.18~\mu m$, se tiene
 
-$ 2\lambda = 0.18~\mu m $
+$$ 2\lambda = 0.18~\mu m $$
 
 por lo tanto,
 
-$ \lambda = 0.09~\mu m. $
+$$ \lambda = 0.09~\mu m. $$
 
 Así, las dimensiones del transistor mínimo son las siguientes:
 
-$ W_{dib} = 4\lambda = 0.36~\mu m $
-$ L_{dib} = 2\lambda = 0.18~\mu m. $
+$$ W_{dib} = 4\lambda = 0.36~\mu m $$
+$$ L_{dib} = 2\lambda = 0.18~\mu m. $$
 
 Estas dimensiones se utilizarán tanto para el cálculo de la resistencia efectiva como para la estimación de la capacitancia equivalente de compuerta.
 
@@ -48,99 +48,99 @@ El circuito de medición considerado corresponde a un transistor NMOS con la com
 
 Para la corriente de referencia se usan los parámetros típicos del proceso XH018 para transistores de 1.8 V. En particular,
 
-$ I_{ON} = I_{dsat}(V_{gs}=V_{ds}=1.8\,\text{V},\, W/L=10/0.18) = 475~\mu\text{A}/\mu\text{m} $
+$$ I_{ON} = I_{dsat}(V_{gs}=V_{ds}=1.8\,\text{V},\, W/L=10/0.18) = 475~\mu\text{A}/\mu\text{m} $$
 
 ![Parámetros típicos para transistores de 1.8 V de la tecnología XFAB XH018 empleados en los cálculos de la Parte 1.](fig/Captura%20de%20pantalla%202026-03-31%20230819.png)  
 *Figura 2: Parámetros típicos para transistores de 1.8 V de la tecnología XFAB XH018 empleados en los cálculos de la Parte 1.*
 
 Como aproximación de primer orden, esta corriente se escala por el ancho del transistor mínimo,
 
-$ I_H \approx I_{dsat} \approx 475~\mu A/\mu m \cdot 0.36~\mu m, $
+$$ I_H \approx I_{dsat} \approx 475~\mu A/\mu m \cdot 0.36~\mu m, $$
 
 por lo que
 
-$ I_H \approx 171~\mu A. $
+$$ I_H \approx 171~\mu A. $$
 
 #### Cálculo con la ecuación (4.16)
 
 De acuerdo con la literatura, si durante la descarga el transistor permanece suficientemente en saturación de velocidad y la corriente puede considerarse aproximadamente constante, la resistencia efectiva se estima como
 
-$ R_n^{(4.16)} \approx \frac{V_{DD}}{2I_{dsat}}. $
+$$ R_n^{(4.16)} \approx \frac{V_{DD}}{2I_{dsat}}. $$
 
-Con $V_{DD}=1.8~V$ e $I_{dsat}\approx 171~\mu A$,
+Con $$V_{DD}=1.8~V$ e $I_{dsat}\approx 171~\mu A$$,
 
-$ R_n^{(4.16)} \approx \frac{1.8}{2(171\times 10^{-6})}=5.263~k\Omega. $
+$$ R_n^{(4.16)} \approx \frac{1.8}{2(171\times 10^{-6})}=5.263~k\Omega. $$
 
 #### Cálculo con la ecuación (4.19)
 
 La ecuación (4.19) mejora la aproximación anterior al considerar que la entrada no sube instantáneamente, de manera que la corriente del transistor cambia entre un valor inicial $I_L$ y un valor final $I_H$ durante la transición. En este caso,
 
-$ R_n^{(4.19)} = \frac{V_{DD}}{I_H + I_L}. $
+$$ R_n^{(4.19)} = \frac{V_{DD}}{I_H + I_L}. $$
 
 Para estimar $I_L$, se toma la recomendación del documento de parámetros de XFAB para transistores mínimos, donde se indica que en esta tecnología es probable la presencia de saturación de velocidad y se sugiere un modelo I--V lineal de primer orden. Usando un umbral aproximado de transistor mínimo
 
-$ V_T(W/L=0.22/0.18) \approx 0.45~V, $
+$$ V_T(W/L=0.22/0.18) \approx 0.45~V, $$
 
 se emplea la proporcionalidad lineal con el sobrevoltaje:
 
-$ I_L \approx I_{ON}\cdot \frac{(V_{DD}/2)-V_T}{V_{DD}-V_T}. $
+$$ I_L \approx I_{ON}\cdot \frac{(V_{DD}/2)-V_T}{V_{DD}-V_T}. $$
 
 Sustituyendo valores,
 
-$ I_L \approx 171~\mu A \cdot \frac{0.9-0.45}{1.8-0.45} = 57~\mu A. $
+$$ I_L \approx 171~\mu A \cdot \frac{0.9-0.45}{1.8-0.45} = 57~\mu A. $$
 
 Por lo tanto,
 
-$ R_n^{(4.19)} \approx \frac{1.8}{171\times 10^{-6}+57\times 10^{-6}}=7.89~k\Omega. $
+$$ R_n^{(4.19)} \approx \frac{1.8}{171\times 10^{-6}+57\times 10^{-6}}=7.89~k\Omega. $$
 
 #### Discusión de resultados
 
 Los resultados obtenidos con ambas ecuaciones son distintos porque la ecuación (4.16) trata la descarga como si el transistor condujera una corriente casi constante durante toda la transición. En contraste, la ecuación (4.19) incorpora el efecto del tiempo de subida finito de la entrada, por lo que la corriente del transistor cambia entre un valor inicial $I_L$ y uno final $I_H$, aumentando la resistencia efectiva calculada. En consecuencia, la ecuación (4.16) resulta útil como una primera estimación rápida, mientras que la ecuación (4.19) ofrece una aproximación más realista dentro del modelo analítico empleado. Por lo tanto tenemos las siguiente resistencias efectivas para ambos casos,
 
-$ R_n^{(4.16)} \approx 5.263~k\Omega $
-$ R_n^{(4.19)} \approx 7.89~k\Omega. $
+$$ R_n^{(4.16)} \approx 5.263~k\Omega $$
+$$ R_n^{(4.19)} \approx 7.89~k\Omega. $$
 
 ### Capacitancia equivalente de compuerta y constante RC
 
 Para esta parte se utilizan los parámetros del transistor NMOS de 1.8 V del proceso XH018:
 
-$ C_{OX}=8.46~\mathrm{fF}/\mu m^2, $
-$ C_{OV}=0.33~\mathrm{fF}/\mu m, $
-$ \Delta L = 0.02~\mu m, $
-$ \Delta W = 0.05~\mu m. $
+$$ C_{OX}=8.46~\mathrm{fF}/\mu m^2, $$
+$$ C_{OV}=0.33~\mathrm{fF}/\mu m, $$
+$$ \Delta L = 0.02~\mu m, $$
+$$ \Delta W = 0.05~\mu m. $$
 
 El documento de parámetros indica que, para una estimación más pesimista de $C_{gs}$ en conmutación, debe emplearse la expresión correspondiente al caso en que el transistor cambia entre corte y triodo. Primero, se calculan las dimensiones efectivas:
 
-$ L_{eff} = L_{dib} - \Delta L = 0.18 - 0.02 = 0.16~\mu m $
-$ W_{eff} = W_{dib} - \Delta W = 0.36 - 0.05 = 0.31~\mu m. $
+$$ L_{eff} = L_{dib} - \Delta L = 0.18 - 0.02 = 0.16~\mu m $$
+$$ W_{eff} = W_{dib} - \Delta W = 0.36 - 0.05 = 0.31~\mu m. $$
 
 La capacitancia de traslape drenaje-compuerta es
 
-$ C_{gd}=W_{eff}C_{OV}=0.31\cdot 0.33=0.102~\mathrm{fF}. $
+$$ C_{gd}=W_{eff}C_{OV}=0.31\cdot 0.33=0.102~\mathrm{fF}. $$
 
 Para la capacitancia fuente-compuerta se usa la versión pesimista:
 
-$ C_{gs}=W_{dib}L_{dib}C_{OX}+W_{dib}C_{OV}. $
+$$ C_{gs}=W_{dib}L_{dib}C_{OX}+W_{dib}C_{OV}. $$
 
 Sustituyendo,
 
-$ C_{gs}=(0.36)(0.18)(8.46)+(0.36)(0.33)=0.667~\mathrm{fF}. $
+$$ C_{gs}=(0.36)(0.18)(8.46)+(0.36)(0.33)=0.667~\mathrm{fF}. $$
 
 Como aproximación de primer orden para la capacitancia equivalente de compuerta, se toma la suma dominante
 
-$ C \approx C_{gs}+C_{gd}, $
+$$ C \approx C_{gs}+C_{gd}, $$
 
 por lo que
 
-$ C \approx 0.667+0.102=0.769~\mathrm{fF}. $
+$$ C \approx 0.667+0.102=0.769~\mathrm{fF}. $$
 
 El enunciado indica que se suponga que las capacitancias de difusión son iguales a la capacitancia de compuerta, de manera que
 
-$ C_{db}=C_{sb}=C\approx 0.769~\mathrm{fF}. $
+$$ C_{db}=C_{sb}=C\approx 0.769~\mathrm{fF}. $$
 
 Finalmente, para la constante del proceso se emplea la resistencia efectiva obtenida con la ecuación (4.19), por ser la aproximación más realista de las dos consideradas:
 
-$ RC = (7.89~k\Omega)(0.769~\mathrm{fF})=6.07~ps. $
+$$ RC = (7.89~k\Omega)(0.769~\mathrm{fF})=6.07~ps. $$
 
 ---
 
@@ -149,19 +149,19 @@ $ RC = (7.89~k\Omega)(0.769~\mathrm{fF})=6.07~ps. $
 Los resultados finales de la primera parte de la tarea son los siguientes:
 
 - Resistencia efectiva usando la ecuación (4.16):  
-  $ R_n^{(4.16)} \approx 5.263~k\Omega $
+   $R_n^{(4.16)} \approx 5.263~k\Omega$
 
 - Resistencia efectiva usando la ecuación (4.19):  
-  $ R_n^{(4.19)} \approx 7.89~k\Omega $
+  $R_n^{(4.19)} \approx 7.89~k\Omega$
 
 - Capacitancia equivalente de compuerta:  
-  $ C \approx 0.769~\mathrm{fF} $
+  $C \approx 0.769~\mathrm{fF}$
 
 - Capacitancias de difusión asumidas:  
-  $ C_{db}=C_{sb}=0.769~\mathrm{fF} $
+  $C_{db}=C_{sb}=0.769~\mathrm{fF}$
 
 - Constante del proceso:  
-  $ RC \approx 6.07~ps $
+  $RC \approx 6.07~ps$
 
 ---
 
@@ -171,26 +171,26 @@ Los resultados finales de la primera parte de la tarea son los siguientes:
 
 Se diseñó un inversor CMOS mínimo en la tecnología XFAB XH018 de 1.8 V, imponiendo que el transistor NMOS tuviera el tamaño mínimo permitido por la tecnología y buscando que el punto de transición del inversor se ubicara en
 
-$ V_M = \frac{V_{DD}}{2} = 0.9~V. $
+$V_M = \frac{V_{DD}}{2} = 0.9~V.$
 
 #### Selección del modelo de transistor
 
 **Verificación de saturación de velocidad**  
 Para tecnología de $0.18\ \mu m$ con $V_{DD} = 1.8\text{ V}$:
-$ E_{aplicado} = \frac{V_{DD}}{L_{eff}} = \frac{1.8}{0.16} = 11.25\text{ V}/\mu\text{m} $
+$E_{aplicado} = \frac{V_{DD}}{L_{eff}} = \frac{1.8}{0.16} = 11.25\text{ V}/\mu\text{m}$
 De la literatura sabemos que:  
-$ E_c \approx 1 - 2\text{ V}/\mu\text{m} $  
+$E_c \approx 1 - 2\text{ V}/\mu\text{m}$  
 Dado que $E_{aplicado} \gg E_c$, se confirma que estamos en **saturación de velocidad**. Esto provoca lo siguiente:
 - Causa que la velocidad de los portadores se sature.
 - Como consecuencia, la corriente ya no depende del cuadrado del voltaje, sino que depende linealmente del voltaje.
 
 Como primer paso, se realizó una simulación rápida del transistor mínimo para identificar el régimen de operación más adecuado para el cálculo analítico. A partir de la familia de curvas $I_D$--$V_{DS}$ del NMOS mínimo, se observó que la corriente comienza a saturarse a un valor de $V_{DS}$ significativamente menor que el esperado por el modelo de canal largo, donde
 
-$ V_{DS,sat,long} \approx V_{GS}-V_T. $
+$V_{DS,sat,long} \approx V_{GS}-V_T.$
 
 Usando $V_{GS}=1.8~V$ y el valor típico $V_T \approx 0.45~V$ para un NMOS cercano al mínimo en la tecnología XH018, se obtiene
 
-$ V_{DS,sat,long} \approx 1.35~V. $
+$V_{DS,sat,long} \approx 1.35~V.$
 
 Sin embargo, en la simulación la curva comienza a aplanarse alrededor de $V_{DS,sat,obs}\approx 0.8~V$, lo cual indica saturación temprana y comportamiento de canal corto. Por esta razón, para el dimensionamiento inicial del inversor se adoptó el modelo de saturación de velocidad en lugar del modelo cuadrático de canal largo, como se puede observar en la Figura 3.
 
@@ -201,38 +201,38 @@ Sin embargo, en la simulación la curva comienza a aplanarse alrededor de $V_{DS
 
 Utilizando la ecuación (2.57) de la sección 2.5.2 de la bibliografía para el voltaje de conmutación y sustituyendo $V_{INV}$:
 
-$ 0.9 = \frac{1.8 + V_{tp} + V_{tn}\left(\frac{1}{r}\right)}{1 + \frac{1}{r}} $
+$0.9 = \frac{1.8 + V_{tp} + V_{tn}\left(\frac{1}{r}\right)}{1 + \frac{1}{r}}$
 
 *Nota: El libro asume que $C_{ox}$ es similar para ambos transistores, pero en la realidad sí presentan ligeras diferencias.*
 
 Donde la relación $r$ se define como:
 
-$ r = \frac{W_p v_{sat-p}}{W_n v_{sat-n}} $
+$r = \frac{W_p v_{sat-p}}{W_n v_{sat-n}}$
 
 Para encontrar la relación de tamaños $W_p/W_n$, debemos despejar $r$. Si asumiéramos simetría perfecta ($V_{tn} \approx |V_{tp}|$), la ecuación se simplificaría. En ese caso ideal, si $V_{tn} = |V_{tp}| \implies V_{INV} = V_{DD}/2$, tendríamos $r=1$.
 
 **Cálculo de la Relación de Corrientes**  
 En la zona de saturación de velocidad, la corriente se aproxima por:
 
-$ I_{dsat} \approx W \cdot I_{ON} $
+$I_{dsat} \approx W \cdot I_{ON}$
 
 Para que el inversor conmute en $V_{DD}/2$, la capacidad de "tirar" hacia abajo (NMOS) debe ser igual a la capacidad de "tirar" hacia arriba (PMOS) en ese punto de transición. Por lo tanto, la relación de anchos necesaria es inversamente proporcional a la relación de corrientes:
 
-$ \frac{W_p}{W_n} \approx \frac{I_{ONn}}{I_{ONp}} = \frac{475}{170} \approx 2.794 $
+$\frac{W_p}{W_n} \approx \frac{I_{ONn}}{I_{ONp}} = \frac{475}{170} \approx 2.794 $
 
 Por otro lado, sustituyendo los valores reales de los voltajes de umbral extraídos de la tabla ($V_{tn} = 0.58\text{ V}$, $V_{tp} = -0.65\text{ V}$) en la ecuación analítica de $V_{INV}$:
 
-$ 0.9 = \frac{1.8 + (-0.65) + 0.58\left(\frac{1}{r}\right)}{1 + \frac{1}{r}} $
-$ 0.9 \left(1 + \frac{1}{r}\right) = 1.15 + \frac{0.58}{r} $
-$ 0.9 + \frac{0.9}{r} = 1.15 + \frac{0.58}{r} $
-$ 0.9 - 1.15 = -\frac{0.9}{r} + \frac{0.58}{r} $
-$ -0.25 = \frac{-0.32}{r} $
-$ r = \frac{-0.32}{-0.25} \implies r = 1.28 $
+$0.9 = \frac{1.8 + (-0.65) + 0.58\left(\frac{1}{r}\right)}{1 + \frac{1}{r}}$
+$0.9 \left(1 + \frac{1}{r}\right) = 1.15 + \frac{0.58}{r}$
+$0.9 + \frac{0.9}{r} = 1.15 + \frac{0.58}{r}$
+$0.9 - 1.15 = -\frac{0.9}{r} + \frac{0.58}{r}$
+$-0.25 = \frac{-0.32}{r}$
+$r = \frac{-0.32}{-0.25} \implies r = 1.28$
 
 En la literatura, si definimos $r$ como una relación efectiva que incluye las movilidades y velocidades de los portadores:
 
-$ \frac{W_p}{W_n} = r \cdot \frac{\mu_n}{\mu_p} $
-$ \frac{W_p}{W_n} = 1.28 \cdot \frac{307}{59} \approx 6.6 $
+$\frac{W_p}{W_n} = r \cdot \frac{\mu_n}{\mu_p}$
+$\frac{W_p}{W_n} = 1.28 \cdot \frac{307}{59} \approx 6.6$
 
 *Nota: Esta relación es muy alta en teoría. En la práctica, para un proceso de $0.18\ \mu m$, suele estar entre $2.5$ y $3.5$.*
 
@@ -240,7 +240,7 @@ $ \frac{W_p}{W_n} = 1.28 \cdot \frac{307}{59} \approx 6.6 $
 
 Usando la relación de corrientes $I_{ON}$ del datasheet de XFAB, obtenemos una primera estimación empírica y más realista:
 
-$ \frac{W_p}{W_n} \approx 2.8 $
+$\frac{W_p}{W_n} \approx 2.8$
 
 **Estimación inicial mínima (sin considerar contactos):**  
 Se proponen dimensiones iniciales basándose en los mínimos permitidos por el proceso XFAB:
@@ -253,8 +253,8 @@ El objetivo será hacer iteraciones en simulación para afinar este valor de dis
 **Cálculo analítico para incluir contactos de difusión:**  
 Para que haya espacio físico suficiente para colocar contactos de difusión en el layout, debemos cumplir con las reglas escalables basadas en el parámetro $\lambda$:
 
-$ \lambda = 0.09\ \mu m $
-$ W_{min} \text{ práctico con contactos} = 4\lambda = 4(0.09\ \mu m) = 0.36\ \mu m $
+$\lambda = 0.09\ \mu m$
+$W_{min} \text{ práctico con contactos} = 4\lambda = 4(0.09\ \mu m) = 0.36\ \mu m$
 
 **Dimensión recomendada NMOS final:**
 - $W_n = 0.36\ \mu m\ (4\lambda) \longrightarrow$ Permite colocar 2 contactos de difusión.
@@ -264,15 +264,15 @@ $ W_{min} \text{ práctico con contactos} = 4\lambda = 4(0.09\ \mu m) = 0.36\ \m
 
 Se fijó el NMOS con dimensiones mínimas:
 
-$ W_n = 0.36~\mu m, \qquad L_n = 0.18~\mu m $
+$W_n = 0.36~\mu m, \qquad L_n = 0.18~\mu m$
 
 y se planteó una solución analítica inicial para el PMOS, imponiendo que el inversor conmutara en $V_M=V_{DD}/2$. Como aproximación de primer orden, se igualaron las capacidades de conducción del PMOS y del NMOS en el punto de transición, utilizando el modelo correspondiente a saturación de velocidad. A partir de los parámetros típicos del proceso XH018 para transistores de 1.8 V, se obtuvo una primera estimación de la relación PMOS/NMOS:
 
-$ \frac{W_p}{W_n} \approx 3. $
+$\frac{W_p}{W_n} \approx 3.$
 
 Con ello, se propuso inicialmente:
 
-$ W_p = 1.08~\mu m, \qquad L_p = 0.18~\mu m. $
+$W_p = 1.08~\mu m, \qquad L_p = 0.18~\mu m.$
 
 #### Verificación de la curva característica
 
@@ -283,7 +283,7 @@ Posteriormente, se verificó el diseño mediante un barrido DC de la entrada del
 
 A partir de la intersección entre la curva de salida y la recta $V_{out}=V_{in}$, se observó que el punto de transición del inversor se ubica aproximadamente en
 
-$ V_M \approx 0.9~V, $
+$V_M \approx 0.9~V,$
 
 lo cual es cercano a $V_{DD}/2=0.9~V$. Por tanto, se considera que el inversor cumple aproximadamente la condición de margen de ruido simétrico solicitada.
 
@@ -296,7 +296,7 @@ Usando el mismo barrido DC, se midió la corriente de la rama de alimentación d
 
 La corriente es prácticamente nula para valores de entrada cercanos a $0$ y $1.8~V$, y presenta un máximo alrededor del punto de transición. El valor máximo medido fue:
 
-$ I_{SC,\max} \approx 26.68~\mu A. $
+$I_{SC,\max} \approx 26.68~\mu A.$
 
 #### Iteraciones empíricas de la relación PMOS/NMOS
 
@@ -314,11 +314,11 @@ Además de la solución analítica, se realizaron iteraciones empíricas variand
 
 A partir de estas iteraciones, se seleccionó como solución final una relación PMOS/NMOS de aproximadamente:
 
-$ \frac{W_p}{W_n} \approx 6. $
+$\frac{W_p}{W_n} \approx 6.$
 
 En resumen, el modelo analítico idealizado predijo una relación PMOS/NMOS cercana a 6.6, mientras que la estimación práctica basada en las corrientes $I_{ON}$ del proceso sugirió un valor inicial de aproximadamente 2.8. No obstante, las simulaciones empíricas en Virtuoso/Spectre mostraron que la relación que mejor centra el punto de transición en $V_{DD}/2$ para el inversor final es aproximadamente 6, lo que evidencia la diferencia entre el modelo simplificado, la estimación de primer orden y el comportamiento real descrito por el modelo utilizado por Virtuoso. Ahora bien, para que se cumpliera dicho diseño se tiene que el ancho final del PMOS deberia ser:
 
-$ W_p = 2.16~\mu m $
+$W_p = 2.16~\mu m$
 
 #### Simulación en esquinas de proceso
 
@@ -373,11 +373,11 @@ Se observa que al aumentar la relación PMOS/NMOS:
 
 La diferencia entre retardos cambia de signo, indicando un punto de balance donde:
 
-$ t_{pdr} \approx t_{pdf} $
+$t_{pdr} \approx t_{pdf}$
 
 A partir de la interpolación de los datos, este punto ocurre aproximadamente en:
 
-$ \frac{W_p}{W_n} \approx 3.76 $
+$\frac{W_p}{W_n} \approx 3.76$
 
 lo cual corresponde a una condición de conmutación simétrica. Para adquirir dicho resultado se parametrizo el $Wp$ o ancho del PMOS y se coloco manualmente los distintos anchos dado que nuestra versión de Candace virtuoso no ofrece realiza un barrido optimizado, el rango de valores seleccionados van desde $440nm$ hasta los $2640 nm$.
 
@@ -389,11 +389,11 @@ Este resultado es consistente con la menor movilidad de los huecos respecto a lo
 
 El SPICE deck de la permite analizar y optimizar automáticamente el desempeño de un inversor CMOS bajo condiciones de carga tipo FO4. El circuito se basa en un inversor parametrizable, donde el ancho del PMOS se define mediante una variable, manteniendo fijo el NMOS. Se implementa una cadena de inversores con cargas crecientes para modelar un escenario realista de propagación. El deck realiza una simulación transitoria y mide automáticamente los retardos de subida ($t_{pdr}$) y bajada ($t_{pdf}$), evaluando además su diferencia:
 
-$ diff = t_{pdr} - t_{pdf} $
+$diff = t_{pdr} - t_{pdf}$
 
 Mediante un algoritmo de optimización, se ajusta el tamaño del PMOS dentro de un rango definido para minimizar esta diferencia, buscando cumplir:
 
-$ t_{pdr} \approx t_{pdf} $
+$t_{pdr} \approx t_{pdf}$
 
 Esto permite encontrar de forma automática la relación óptima $W_p/W_n$, la cual en este trabajo coincide aproximadamente con el valor obtenido manualmente ($\approx 3.76$). En general, el método automático ofrece mayor precisión, mientras que el análisis manual permite una mejor comprensión del comportamiento del circuito.
 
@@ -419,8 +419,8 @@ Se aplicó el método basado en la ecuación a continuación.
 
 donde las diferencias de retardos se calculan como:
 
-$ \Delta t_{pdf} = t_{pdf}(h_4) - t_{pdf}(h_3) $
-$ \Delta t_{pdr} = t_{pdr}(h_4) - t_{pdr}(h_3) $
+$\Delta t_{pdf} = t_{pdf}(h_4) - t_{pdf}(h_3)$
+$\Delta t_{pdr} = t_{pdr}(h_4) - t_{pdr}(h_3)$
 
 donde $h_4$ y $h_3$ corresponden a distintos valores de fan-out (aplicadas por indicación de las figuras instructivas del inciso). Esta permite estimar la resistencia efectiva de los transistores a partir de diferencias de retardos bajo distintas condiciones de carga. Para ello se realizaron más mediciones pero con ligeron cambios en la simulación considerando
 
@@ -450,7 +450,7 @@ Se observa que el valor obtenido es consistente con los resultados de la $1.a$. 
 
 Adicionalmente, se verifica que:
 
-$ R_p > R_n $
+$R_p > R_n$
 
 lo cual es consistente con la menor movilidad de los huecos en el transistor PMOS.
 
