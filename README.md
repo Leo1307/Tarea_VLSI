@@ -411,11 +411,11 @@ Por lo tanto, se prefiere una solución cercana a la obtenida manualmente, refin
 Se aplicó el método basado en la ecuación a continuación.
 
 - Para el NMOS:
-  $ R_n = \frac{t_{pdf,2} - t_{pdf,1}}{0.69 \, (h_2 - h_1)\, C_{inv}} $
-  $ R_n = \frac{\Delta t_{pdf}}{0.69 \cdot 3 \cdot C_{inv}} \approx \frac{\Delta t_{pdf}}{3C} $
+  $R_n = \frac{t_{pdf,2} - t_{pdf,1}}{0.69 \, (h_2 - h_1)\, C_{inv}}$
+  $R_n = \frac{\Delta t_{pdf}}{0.69 \cdot 3 \cdot C_{inv}} \approx \frac{\Delta t_{pdf}}{3C}$
 - Para el PMOS:
-  $ R_p = \frac{t_{pdr,2} - t_{pdr,1}}{0.69 \, (h_2 - h_1)\, C_{inv}} $
-  $ R_p = \frac{\Delta t_{pdr}}{0.69 \cdot \frac{3}{2} \cdot C_{inv}} \approx \frac{2\,\Delta t_{pdr}}{3C} $
+  $R_p = \frac{t_{pdr,2} - t_{pdr,1}}{0.69 \, (h_2 - h_1)\, C_{inv}}$
+  $R_p = \frac{\Delta t_{pdr}}{0.69 \cdot \frac{3}{2} \cdot C_{inv}} \approx \frac{2\,\Delta t_{pdr}}{3C}$
 
 donde las diferencias de retardos se calculan como:
 
@@ -435,8 +435,8 @@ A partir de las simulaciones y los resultados de la $2.b$, se obtuvieron los sig
 
 Y al aplicar las ecuaciones antes mencionadas en conjunto con los resultados de la parte 1 (como $C=0.769 fF$) se obtuvo:
 
-$ \Delta t_{pdf} = 0.0186 $
-$ \Delta t_{pdr} = 0.0135 $
+$\Delta t_{pdf} = 0.0186$
+$\Delta t_{pdr} = 0.0135$
 
 - $R_n = 8062.42\ \Omega$
 - $R_p = 11703.51\ \Omega$
