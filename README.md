@@ -146,11 +146,20 @@ $$ RC = (7.89~k\Omega)(0.769~\mathrm{fF})=6.07~ps. $$
 
 Los resultados finales de la primera parte de la tarea son los siguientes:
 
-- Resistencia efectiva usando la ecuación (4.16): $$ R_n^{(4.16)} \approx 5.263~k\Omega $$
-- Resistencia efectiva usando la ecuación (4.19): $$ R_n^{(4.19)} \approx 7.89~k\Omega $$
-- Capacitancia equivalente de compuerta: $$ C \approx 0.769~\mathrm{fF} $$
-- Capacitancias de difusión asumidas: $$ C_{db}=C_{sb}=0.769~\mathrm{fF} $$
-- Constante del proceso: $$ RC \approx 6.07~ps. $$
+- Resistencia efectiva usando la ecuación (4.16):  
+  $$ R_n^{(4.16)} \approx 5.263~k\Omega $$
+
+- Resistencia efectiva usando la ecuación (4.19):  
+  $$ R_n^{(4.19)} \approx 7.89~k\Omega $$
+
+- Capacitancia equivalente de compuerta:  
+  $$ C \approx 0.769~\mathrm{fF} $$
+
+- Capacitancias de difusión asumidas:  
+  $$ C_{db}=C_{sb}=0.769~\mathrm{fF} $$
+
+- Constante del proceso:  
+  $$ RC \approx 6.07~ps $$
 
 ---
 
