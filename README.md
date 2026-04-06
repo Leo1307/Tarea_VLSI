@@ -42,7 +42,9 @@ Estas dimensiones se utilizarán tanto para el cálculo de la resistencia efecti
 El circuito de medición considerado corresponde a un transistor NMOS con la compuerta conectada a $V_{DD}$, la fuente conectada a tierra y el drenaje unido a un capacitor inicialmente cargado a $V_{DD}$. Bajo esta configuración, la salida conmuta desde $V_{DD}$ hasta GND descargando el capacitor a través del transistor encendido.
 
 ![Circuito de prueba](fig/Circuito%20de%20prueba.png)
-*Figura 1: Circuito de prueba para estimar la resistencia efectiva del NMOS y representación cualitativa de la característica $I_D$-$V_{DS}$.*
+
+
+*Figura 1: Circuito de prueba para estimar la resistencia efectiva del NMOS y representación cualitativa de la característica ID-VDS.*
 
 Para la corriente de referencia se usan los parámetros típicos del proceso XH018 para transistores de 1.8 V. En particular,
 
